@@ -9,7 +9,6 @@
 #include <chrono>
 #include <GLFW/glfw3.h>
 #include "../Statements/Statements.h"
-#include <iostream>
 
 enum class ButtonType
 {

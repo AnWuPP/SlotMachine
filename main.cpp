@@ -3,10 +3,11 @@
 
 int main()
 {
-	std::shared_ptr<Statements> wait_player_state = std::make_shared<WaitingPlayerActionStatements>();
-	std::shared_ptr<Statements> show_prize_state = std::make_shared<ShowPrizeStatements>();
-	std::shared_ptr<Statements> drum_ratetion_state = std::make_shared<DrumRotationStatements>();
-	std::vector<std::shared_ptr<Statements>> states_queue { wait_player_state, drum_ratetion_state, show_prize_state };
+	std::vector<std::shared_ptr<Statements>> states_queue {
+		std::make_shared<WaitingPlayerActionStatements>(),
+		std::make_shared<DrumRotationStatements>(),
+		std::make_shared<ShowPrizeStatements>()
+	};
 
 	Interface interface;
 
