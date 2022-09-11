@@ -29,6 +29,15 @@ bool Timer::time_is_up()
 	return diff >= _time;
 }
 
+float Timer::complite()
+{
+	if (!running)
+		return 0.f;
+	auto rr = difference();
+	auto res = 1.f - static_cast<float>(rr.count()) / static_cast<float>(_time.count());
+	return res;
+}
+
 std::chrono::seconds Timer::difference()
 {
 	if (!running)

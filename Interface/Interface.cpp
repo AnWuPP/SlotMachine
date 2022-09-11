@@ -80,7 +80,7 @@ void Interface::draw_circle()
 	auto pos = ImGui::GetCursorScreenPos();
 	draw_list->AddCircleFilled(
 		ImVec2(pos.x + _draw_size / 2.f, pos.y + _draw_size / 2.f),
-		20.f,
+		_draw_size / 2.f,
 		ImGui::ColorConvertFloat4ToU32(ImVec4(1.f, 1.f, 1.f, 1.f))
 	);
 }
@@ -110,7 +110,8 @@ void Interface::go_animate()
 {
 	std::random_device rd;
 	std::uniform_int_distribution<int> dist(10, 20);
-	_timer.start(dist(rd));
+	int random = dist(rd);
+	_timer.start(random);
 	_animate = true;
 	_stopping_animate = false;
 }
@@ -144,17 +145,19 @@ void Interface::generate_columns(int count)
 	}
 }
 
-void Interface::draw_column(int id)
+void Interface::draw_column(int id, float delta, float max_speed)
 {
 	if (id > _columns.size() - 1)
 		return;
 	const auto p = ImGui::GetCursorScreenPos();
-	const float step = 5.f;
-	float y = p.y - (_draw_size * 4.f) - step * 2.f;
+	float step = delta;
+	if (_timer.complite() == 0.f)
+		step = max_speed * .1f;
+	float y = p.y - (_draw_size * 4.f);
 	if (_animate)
 	{
 		_anim_pos[id] += step;
-		if (_anim_pos[id] >= _draw_size + _draw_size / 2.f)
+		if (_anim_pos[id] >= _draw_size + _draw_size / 2.f + step / 2.f)
 		{
 			int e = _columns[id][_columns[id].size() - 1];
 			int s = _columns[id][0];
@@ -165,9 +168,13 @@ void Interface::draw_column(int id)
 				_columns[id][i + 1] = s;
 				s = temp;
 			}
-			_anim_pos[id] = 0.f;
+			_anim_pos[id] = 0;
 			if (_stopping_animate && id == _columns.size() - 1)
 			{
+				std::transform(_anim_pos.begin(), _anim_pos.end(), _anim_pos.begin(), [](auto a)
+					{
+						return 0.f;
+					});
 				_timer.stop();
 				_animate = false;
 				_stopping_animate = false;
@@ -185,6 +192,7 @@ void Interface::draw_column(int id)
 			_wons_list[id] = _columns[id][i];
 		y += _draw_size + _draw_size / 2.f;
 	}
+
 	if (_animate && _timer.running && _timer.time_is_up() && id == _columns.size() - 1)
 	{
 		stopping_animate();
@@ -197,7 +205,7 @@ void Interface::show_prize(int id)
 	ImGui::SetCursorPosY(win_size.y / 2.f - _draw_size);
 	auto e = _wons_list[id];
 	_draws[e](this);
-	ImGui::SetCursorPosY(win_size.y / 2.f + _draw_size);
+	ImGui::SetCursorPosY(win_size.y / 2.f + _draw_size / 2.f);
 	ImGui::Text("%d", _prize_size[e]);
 }
 
@@ -215,6 +223,8 @@ void Interface::state_paint(int id)
 	}
 	const auto size = static_cast<int>(_columns.size());
 	ImGui::Columns(size, "cols", false);
+	const float max_speed = 40.f;
+	float delta = (_timer.complite() < 0.5 ? max_speed * _timer.complite() : max_speed * (1.f - _timer.complite()));
 	for (int i = 0, ie = size; i != ie; ++i)
 	{
 		const auto width = ImGui::GetColumnWidth();
@@ -223,7 +233,7 @@ void Interface::state_paint(int id)
 		if (id == 1)
 			show_prize(i);
 		else
-			draw_column(i);
+			draw_column(i, delta, max_speed);
 		ImGui::SetCursorPosY(0);
 		ImGui::NextColumn();
 	}

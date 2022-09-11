@@ -33,6 +33,7 @@ public:
 	bool time_is_up();
 	std::chrono::seconds difference();
 	bool running;
+	float complite();
 private:
 	std::chrono::time_point<std::chrono::system_clock> _start;
 	std::chrono::time_point<std::chrono::system_clock> _end;
@@ -54,7 +55,7 @@ public:
 	void draw_rect();
 	void draw_circle();
 	void draw_leaf();
-	void draw_column(int id);
+	void draw_column(int id, float delta, float max_speed);
 	void generate_columns(int count);
 	void go_animate();
 	void stopping_animate();
