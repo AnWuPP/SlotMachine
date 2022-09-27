@@ -1,2 +1,2 @@
 # Slot Machine
-Для сборки необходима MS Visual Studio, собирается встроенным функционалом IDE, можно еще командой msbuild, правда писать сюда её полностью не буду :):
+Wait for rewrite this, please :)

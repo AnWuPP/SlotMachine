@@ -139,19 +139,26 @@
     <ClCompile Include="GameMachine\GameMachine.cpp" />
     <ClCompile Include="Interface\Interface.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Statements\Statements.cpp" />
-    <ClCompile Include="Interface\Timer.cpp" />
+    <ClCompile Include="Statements\DrumRotation\DrumRotation.cpp" />
+    <ClCompile Include="Statements\ShowPrize\ShowPrize.cpp" />
+    <ClCompile Include="Timer\Timer.cpp" />
     <ClCompile Include="tridparty\imgui\imgui.cpp" />
     <ClCompile Include="tridparty\imgui\imgui_draw.cpp" />
     <ClCompile Include="tridparty\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="tridparty\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="tridparty\imgui\imgui_tables.cpp" />
     <ClCompile Include="tridparty\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Statements\WaitingPlayerAction\WaitingPlayerAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMachine\GameMachine.h" />
+    <ClInclude Include="Interface\imgui_custom_figure.hpp" />
     <ClInclude Include="Interface\Interface.h" />
+    <ClInclude Include="Statements\DrumRotation\DrumRotation.h" />
+    <ClInclude Include="Statements\ShowPrize\ShowPrize.h" />
     <ClInclude Include="Statements\Statements.h" />
+    <ClInclude Include="Statements\WaitingPlayerAction\WaitingPlayerAction.h" />
+    <ClInclude Include="Timer\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

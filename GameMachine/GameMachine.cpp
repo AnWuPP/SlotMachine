@@ -1,69 +1,48 @@
 #include "GameMachine.h"
 
-GameMachine::GameMachine(Interface& interface) : _state(nullptr), _interface(std::make_shared<Interface>(interface)) { }
+GameMachine::GameMachine() : state(nullptr) { }
 
-std::shared_ptr<Statements> GameMachine::get_state() const
-{
-	return _state;
+std::shared_ptr<Statements> GameMachine::getState() const {
+	return state;
 }
 
-void GameMachine::set_state(std::vector<std::shared_ptr<Statements>>& queue)
-{
-	if (queue.empty() || !_queue.empty())
-	{
+void GameMachine::setState(std::vector<std::shared_ptr<Statements>>& inQueue) {
+	if (inQueue.empty() || !queue.empty()) {
 		return;
 	}
-	_queue = queue;
-	_state = _queue[0];
+	queue = inQueue;
+	state = queue[0];
 }
 
-void GameMachine::next_state()
-{
-	if (_queue.empty())
-	{
+void GameMachine::nextState() {
+	if (queue.empty()) {
 		return;
 	}
-	auto it = std::find(_queue.begin(), _queue.end(), _state);
-	if (it == _queue.end())
-	{
+	auto it = std::find(queue.begin(), queue.end(), state);
+	if (it == queue.end()) {
 		return;
 	}
-	if (++it == _queue.end())
-	{
-		it = _queue.begin();
+	if (++it == queue.end()) {
+		it = queue.begin();
 	}
-	_state = *it;
+	state = *it;
 }
 
-void GameMachine::process()
-{
-	while (_interface->is_window_open())
-	{
-		this->_interface->loop(this->_state.get());
+std::vector<std::vector<int>>& GameMachine::getFigureList() {
+	return figureList;
+}
 
-		switch (_interface->pressed_button)
-		{
-			case ButtonType::START:
-				if (_state->get_id() == 0)
-				{
-					this->next_state();
-					_interface->go_animate();
-				}
-				break;
-			case ButtonType::STOP:
-				if (_state->get_id() == 2)
-				{
-					this->next_state();
-					_interface->stopping_animate();
-				}
-				break;
-			default:
-				break;
-		}
-		if (_state->get_id() == 1 && _interface->events == Events::PRIZE_SHOWED)
-		{
-			this->next_state();
-		}
+void GameMachine::generateFigureList(size_t columns) {
+	if (!figureList.empty())
+		figureList.clear();
+	for (size_t i = 0; i != columns; ++i) {
+
 	}
-	_interface->shutdown();
+}
+
+void GameMachine::process() {
+	while (mainInterface.windowOpened()) {
+		mainInterface.loop(state.get());
+	}
+	mainInterface.shutdown();
 }

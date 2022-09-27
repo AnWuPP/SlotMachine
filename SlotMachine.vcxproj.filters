@@ -21,9 +21,6 @@
     <ClCompile Include="GameMachine\GameMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Statements\Statements.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Interface\Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,7 +42,16 @@
     <ClCompile Include="tridparty\imgui\imgui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interface\Timer.cpp">
+    <ClCompile Include="Timer\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Statements\WaitingPlayerAction\WaitingPlayerAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Statements\ShowPrize\ShowPrize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Statements\DrumRotation\DrumRotation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -57,6 +63,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Interface\Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Statements\WaitingPlayerAction\WaitingPlayerAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Statements\ShowPrize\ShowPrize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Statements\DrumRotation\DrumRotation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\imgui_custom_figure.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
