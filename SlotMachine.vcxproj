@@ -152,7 +152,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMachine\GameMachine.h" />
-    <ClInclude Include="Interface\imgui_custom_figure.hpp" />
+    <ClInclude Include="Interface\imgui_custom_figure.cpp" />
+    <ClInclude Include="Interface\imgui_custom_figure.h" />
     <ClInclude Include="Interface\Interface.h" />
     <ClInclude Include="Statements\DrumRotation\DrumRotation.h" />
     <ClInclude Include="Statements\ShowPrize\ShowPrize.h" />

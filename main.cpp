@@ -1,7 +1,7 @@
 #include <iostream>
 #include "GameMachine/GameMachine.h"
 
-int main()
-{
-
+int main() {
+	GameMachine gameMachine;
+	gameMachine.process();
 }

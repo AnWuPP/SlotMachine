@@ -1,4 +1,5 @@
 #include "GameMachine.h"
+#include <iostream>
 
 GameMachine::GameMachine() : state(nullptr) { }
 
@@ -32,17 +33,34 @@ std::vector<std::vector<int>>& GameMachine::getFigureList() {
 	return figureList;
 }
 
-void GameMachine::generateFigureList(size_t columns) {
+void GameMachine::generateFigureList(size_t columnsCount) {
 	if (!figureList.empty())
 		figureList.clear();
-	for (size_t i = 0; i != columns; ++i) {
 
-	}
+	auto random = [] {
+		std::random_device rd;
+		std::uniform_int_distribution range(0, figureCount - 1);
+		return range(rd);
+	};
+
+	auto gen = [&random]() {
+		std::vector<int> column(figureOfColumn);
+		std::generate(column.begin(), column.end(), random);
+		return column;
+	};
+
+	figureList.resize(columnsCount);
+	std::generate(
+		std::make_move_iterator(figureList.begin()),
+		std::make_move_iterator(figureList.end()),
+		gen
+	);
 }
 
 void GameMachine::process() {
+	generateFigureList(columns);
 	while (mainInterface.windowOpened()) {
-		mainInterface.loop(state.get());
+		//mainInterface.loop(state.get());
 	}
 	mainInterface.shutdown();
 }

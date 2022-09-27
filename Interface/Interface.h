@@ -4,7 +4,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "imgui_custom_figure.hpp"
+#include "imgui_custom_figure.h"
 #include <GLFW/glfw3.h>
 #include "../Statements/Statements.h"
 

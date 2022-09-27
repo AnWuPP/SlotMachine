@@ -77,7 +77,10 @@
     <ClInclude Include="Timer\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interface\imgui_custom_figure.hpp">
+    <ClInclude Include="Interface\imgui_custom_figure.cpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\imgui_custom_figure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

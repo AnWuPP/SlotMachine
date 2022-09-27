@@ -1,10 +1,4 @@
-#pragma once
-
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
-
-constexpr auto drawSize = 60.f;
+#include "imgui_custom_figure.h"
 
 namespace ImGui {
 	void customTriangle()
@@ -45,7 +39,7 @@ namespace ImGui {
 	{
 		auto drawList = ImGui::GetWindowDrawList();
 		auto pos = ImGui::GetCursorScreenPos();
-		drawList->AddRectFilled(pos, ImVec2(pos.x + drawSize, pos.y + _draw_size),
+		drawList->AddRectFilled(pos, ImVec2(pos.x + drawSize, pos.y + drawSize),
 			ImGui::ColorConvertFloat4ToU32(ImVec4(1.f, 1.f, 1.f, 1.f)),
 			20.f, ImDrawFlags_RoundCornersTopLeft | ImDrawFlags_RoundCornersBottomRight);
 	}
