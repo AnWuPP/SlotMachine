@@ -3,8 +3,8 @@
 #include <vector>
 #include <random>
 #include <algorithm>
-#include "../Statements/Statements.h"
 #include "../Interface/Interface.h"
+#include "../Statements/Statements.h"
 
 constexpr size_t columns = 5; // default columns count
 constexpr int figureCount = 4; // max figuries
@@ -14,8 +14,7 @@ class GameMachine {
 public:
 	GameMachine();
 	std::shared_ptr<Statements> getState() const;
-	void setState(std::vector<std::shared_ptr<Statements>>& inQueue);
-	void nextState();
+	void setState(std::shared_ptr<Statements> inState);
 	void process();
 	std::vector<std::vector<int>>& getFigureList();
 	void generateFigureList(size_t columns);

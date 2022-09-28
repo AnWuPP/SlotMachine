@@ -8,6 +8,8 @@
 #include <GLFW/glfw3.h>
 #include "../Statements/Statements.h"
 
+class GameMachine;
+
 enum class ButtonType {
 	NONE = 0,
 	START,
@@ -19,7 +21,7 @@ public:
 	ButtonType buttonPressed;
 	Interface();
 	~Interface();
-	void loop(Statements* state);
+	void loop(Statements* state, GameMachine* gameMachine);
 	bool windowOpened() const;
 	void shutdown();
 private:

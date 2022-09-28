@@ -1,5 +1,5 @@
 #include "GameMachine.h"
-#include <iostream>
+#include "../Statements/WaitingPlayerAction/WaitingPlayerAction.h"
 
 GameMachine::GameMachine() : state(nullptr) { }
 
@@ -7,26 +7,12 @@ std::shared_ptr<Statements> GameMachine::getState() const {
 	return state;
 }
 
-void GameMachine::setState(std::vector<std::shared_ptr<Statements>>& inQueue) {
-	if (inQueue.empty() || !queue.empty()) {
-		return;
-	}
-	queue = inQueue;
-	state = queue[0];
-}
-
-void GameMachine::nextState() {
-	if (queue.empty()) {
-		return;
-	}
-	auto it = std::find(queue.begin(), queue.end(), state);
-	if (it == queue.end()) {
-		return;
-	}
-	if (++it == queue.end()) {
-		it = queue.begin();
-	}
-	state = *it;
+void GameMachine::setState(std::shared_ptr<Statements> inState) {
+	if (inState.get() == nullptr)
+		throw std::runtime_error("Bad state pointer");
+	if (state.get() != nullptr)
+		state.reset();
+	state = inState;
 }
 
 std::vector<std::vector<int>>& GameMachine::getFigureList() {
@@ -45,22 +31,27 @@ void GameMachine::generateFigureList(size_t columnsCount) {
 
 	auto gen = [&random]() {
 		std::vector<int> column(figureOfColumn);
-		std::generate(column.begin(), column.end(), random);
+		std::generate(
+			column.begin(),
+			column.end(),
+			random
+		);
 		return column;
 	};
 
 	figureList.resize(columnsCount);
 	std::generate(
-		std::make_move_iterator(figureList.begin()),
-		std::make_move_iterator(figureList.end()),
+		figureList.begin(),
+		figureList.end(),
 		gen
 	);
 }
 
 void GameMachine::process() {
+	setState(std::make_shared<WaitingPlayerAction>());
 	generateFigureList(columns);
 	while (mainInterface.windowOpened()) {
-		//mainInterface.loop(state.get());
+		mainInterface.loop(state.get(), this);
 	}
 	mainInterface.shutdown();
 }

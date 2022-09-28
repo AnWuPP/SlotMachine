@@ -1,11 +1,14 @@
 #pragma once
+
 #include "../Statements.h"
+
+class GameMachine;
+class DrumRotation;
+
 class WaitingPlayerAction : public Statements {
 public:
 	WaitingPlayerAction();
-	void drawInterface() const override;
-	bool workIsUp() const override;
+	void drawInterface(GameMachine* gameMachine) const override;
 private:
-	bool stateFinished;
 };
 

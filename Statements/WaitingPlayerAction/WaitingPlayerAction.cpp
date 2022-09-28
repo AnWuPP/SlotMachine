@@ -1,11 +1,9 @@
 #include "WaitingPlayerAction.h"
+#include "../../GameMachine/GameMachine.h"
+#include "../DrumRotation/DrumRotation.h"
 
-WaitingPlayerAction::WaitingPlayerAction() : stateFinished(false) { }
+WaitingPlayerAction::WaitingPlayerAction() { }
 
-bool WaitingPlayerAction::workIsUp() const {
-	return stateFinished;
-}
-
-void WaitingPlayerAction::drawInterface() const {
-
+void WaitingPlayerAction::drawInterface(GameMachine* gameMachine) const {
+	//gameMachine->setState(std::make_shared<DrumRotation>());
 }

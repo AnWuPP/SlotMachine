@@ -41,10 +41,12 @@ void Interface::shutdown() {
 	ImGui::DestroyContext();
 }
 
-void Interface::loop(Statements* state)
+void Interface::loop(Statements* state, GameMachine* gameMachine)
 {
 	if (state == nullptr)
 		throw std::runtime_error("Bad state pointer");
+	if (gameMachine == nullptr)
+		throw std::runtime_error("Bad GameMachine class pointer");
 	buttonPressed = ButtonType::NONE;
 	glClearColor(.0f, .0f, .0f, .0f);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -58,7 +60,7 @@ void Interface::loop(Statements* state)
 	ImGui::SetNextWindowSize(viewport->WorkSize);
 	ImGui::Begin("##MainWindow", 0, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize);
 	ImGui::BeginChild("##Scrollbar", ImVec2(viewport->WorkSize.x - 150.f, .0f), true);
-	state->drawInterface();
+	state->drawInterface(gameMachine);
 	ImGui::EndChild();
 		
 	ImGui::SameLine();
