@@ -1,4 +1,5 @@
 #include "Interface.h"
+#include "../../GameMachine/GameMachine.h"
 
 Interface::Interface() :	window(nullptr), buttonPressed(ButtonType::NONE),
 							columnsCount(0) {
@@ -60,7 +61,9 @@ void Interface::loop(Statements* state, GameMachine* gameMachine)
 	ImGui::SetNextWindowSize(viewport->WorkSize);
 	ImGui::Begin("##MainWindow", 0, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize);
 	ImGui::BeginChild("##Scrollbar", ImVec2(viewport->WorkSize.x - 150.f, .0f), true);
+	ImGui::Columns(static_cast<int>(gameMachine->getFigureList().size()), "rows", false);
 	state->drawInterface(gameMachine);
+	ImGui::Columns();
 	ImGui::EndChild();
 		
 	ImGui::SameLine();

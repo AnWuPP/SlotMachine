@@ -7,6 +7,7 @@
 #include "imgui_custom_figure.h"
 #include <GLFW/glfw3.h>
 #include "../Statements/Statements.h"
+#include "../Interface/DrumPainter.h"
 
 class GameMachine;
 
@@ -24,6 +25,7 @@ public:
 	void loop(Statements* state, GameMachine* gameMachine);
 	bool windowOpened() const;
 	void shutdown();
+	DrumPainter drumPainter;
 private:
 	GLFWwindow* window;
 	size_t columnsCount;

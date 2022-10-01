@@ -18,7 +18,9 @@ public:
 	void process();
 	std::vector<std::vector<int>>& getFigureList();
 	void generateFigureList(size_t columns);
+	Interface& getInterface();
 private:
+	void input(ButtonType btn);
 	std::shared_ptr<Statements> state;
 	std::vector<std::shared_ptr<Statements>> queue;
 	Interface mainInterface;

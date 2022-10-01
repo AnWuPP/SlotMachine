@@ -136,7 +136,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Interface\DrumPainter.cpp" />
     <ClCompile Include="GameMachine\GameMachine.cpp" />
+    <ClCompile Include="Interface\imgui_custom_figure.cpp" />
     <ClCompile Include="Interface\Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Statements\DrumRotation\DrumRotation.cpp" />
@@ -151,8 +153,8 @@
     <ClCompile Include="Statements\WaitingPlayerAction\WaitingPlayerAction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Interface\DrumPainter.h" />
     <ClInclude Include="GameMachine\GameMachine.h" />
-    <ClInclude Include="Interface\imgui_custom_figure.cpp" />
     <ClInclude Include="Interface\imgui_custom_figure.h" />
     <ClInclude Include="Interface\Interface.h" />
     <ClInclude Include="Statements\DrumRotation\DrumRotation.h" />

@@ -8,7 +8,10 @@ class DrumRotation;
 class WaitingPlayerAction : public Statements {
 public:
 	WaitingPlayerAction();
-	void drawInterface(GameMachine* gameMachine) const override;
+	void drawInterface(GameMachine* gameMachine) override;
+	bool workIsUp() const override;
 private:
+	void setFinished();
+	bool finished;
 };
 

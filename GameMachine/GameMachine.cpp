@@ -1,10 +1,16 @@
 #include "GameMachine.h"
 #include "../Statements/WaitingPlayerAction/WaitingPlayerAction.h"
+#include "../Statements/DrumRotation/DrumRotation.h"
+#include "../Statements/ShowPrize/ShowPrize.h"
 
 GameMachine::GameMachine() : state(nullptr) { }
 
 std::shared_ptr<Statements> GameMachine::getState() const {
 	return state;
+}
+
+Interface& GameMachine::getInterface() {
+	return mainInterface;
 }
 
 void GameMachine::setState(std::shared_ptr<Statements> inState) {
@@ -45,6 +51,15 @@ void GameMachine::generateFigureList(size_t columnsCount) {
 		figureList.end(),
 		gen
 	);
+}
+
+void GameMachine::input(ButtonType btn) {
+	switch (btn) {
+	case ButtonType::START:
+		if (state->workIsUp())
+			setState(std::make_shared<DrumRotation>());
+		break;
+	}
 }
 
 void GameMachine::process() {

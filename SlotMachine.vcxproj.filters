@@ -54,6 +54,12 @@
     <ClCompile Include="Statements\DrumRotation\DrumRotation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Interface\DrumPainter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\imgui_custom_figure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMachine\GameMachine.h">
@@ -77,10 +83,10 @@
     <ClInclude Include="Timer\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interface\imgui_custom_figure.cpp">
+    <ClInclude Include="Interface\imgui_custom_figure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interface\imgui_custom_figure.h">
+    <ClInclude Include="Interface\DrumPainter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
