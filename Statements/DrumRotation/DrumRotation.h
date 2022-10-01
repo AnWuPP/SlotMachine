@@ -3,7 +3,7 @@
 #include "../Statements.h"
 #include "../../Timer/Timer.h"
 
-constexpr int pauseTime = 2;
+constexpr int pauseTime = 1;
 constexpr int minDrumTimer = 15;
 constexpr int maxDrumTimer = 25;
 

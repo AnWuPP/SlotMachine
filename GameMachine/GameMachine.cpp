@@ -59,6 +59,9 @@ void GameMachine::input(ButtonType btn) {
 		if (state->workIsUp())
 			setState(std::make_shared<DrumRotation>());
 		break;
+	case ButtonType::STOP:
+		if (!state->workIsUp())
+			setState(std::make_shared<ShowPrize>());
 	}
 }
 

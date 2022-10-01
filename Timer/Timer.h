@@ -7,7 +7,7 @@ public:
 	void start(int inTime);
 	void stop();
 	bool timeIsUp() const;
-	std::chrono::seconds difference() const;
+	float difference() const;
 	float complite() const;
 	bool isRunning() const;
 private:

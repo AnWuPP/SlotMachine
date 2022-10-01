@@ -2,7 +2,7 @@
 #include "../../GameMachine/GameMachine.h"
 #include "../WaitingPlayerAction/WaitingPlayerAction.h"
 
-ShowPrize::ShowPrize() : finished(false) {
+ShowPrize::ShowPrize() : finished(true) {
 	timer.start(showTime);
 }
 
@@ -15,7 +15,7 @@ void ShowPrize::drawInterface(GameMachine* gameMachine) {
 	const int offset = 12; // defailt offset for small screen, dont adaptive :C
 	auto prize = [&, this](auto& e) {
 		auto spos = ImGui::GetCursorPosX();
-		ImGui::SetCursorPos(ImVec2(spos + width / 2.f - 30.f, winSize.x / 2.f - 180.f));
+		ImGui::SetCursorPos(ImVec2(spos + width / 2.f - 30.f, winSize.x / 2.f - 140.f));
 		switch (e[offset]) {
 		case 1:
 			ImGui::customRect();
@@ -47,7 +47,6 @@ void ShowPrize::drawInterface(GameMachine* gameMachine) {
 	};
 	std::for_each(fList.begin(), fList.end(), prize);
 	if (timer.isRunning() && timer.timeIsUp()) {
-		finished = true;
 		gameMachine->setState(std::make_shared<WaitingPlayerAction>());
 	}
 }

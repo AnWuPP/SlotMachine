@@ -7,7 +7,7 @@ Timer::Timer() : running(false),
 
 void Timer::start(int inTime)
 {
-	if (running)
+	if (running || inTime < 1)
 		return;
 	time = std::chrono::seconds(inTime);
 	startTime = std::chrono::system_clock::now();
@@ -30,7 +30,7 @@ bool Timer::timeIsUp() const
 	if (!running)
 		return false;
 	auto diff = difference();
-	return diff.count() >= time.count();
+	return diff >= static_cast<float>(time.count());
 }
 
 float Timer::complite() const
@@ -38,13 +38,13 @@ float Timer::complite() const
 	if (!running)
 		return 0.f;
 	auto rr = difference();
-	auto res = static_cast<float>(rr.count()) / static_cast<float>(time.count());
+	auto res = rr / static_cast<float>(time.count());
 	return res;
 }
 
-std::chrono::seconds Timer::difference() const
+float Timer::difference() const
 {
 	if (!running)
-		return std::chrono::seconds(0);
-	return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - startTime);
+		return 0.f;
+	return static_cast<float>(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - startTime).count());
 }
