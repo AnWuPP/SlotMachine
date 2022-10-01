@@ -1,2 +1,2 @@
 # Slot Machine
-Wait for rewrite this, please :)
+Build in Visual Studio
