@@ -9,6 +9,7 @@ public:
 	bool timeIsUp() const;
 	std::chrono::seconds difference() const;
 	float complite() const;
+	bool isRunning() const;
 private:
 	bool running;
 	std::chrono::time_point<std::chrono::system_clock> startTime;

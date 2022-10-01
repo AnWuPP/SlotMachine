@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../Statements.h"
-
 class GameMachine;
 class DrumRotation;
 
@@ -11,7 +10,6 @@ public:
 	void drawInterface(GameMachine* gameMachine) override;
 	bool workIsUp() const override;
 private:
-	void setFinished();
 	bool finished;
 };
 

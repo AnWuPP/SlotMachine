@@ -67,6 +67,7 @@ void GameMachine::process() {
 	generateFigureList(columns);
 	while (mainInterface.windowOpened()) {
 		mainInterface.loop(state.get(), this);
+		input(mainInterface.buttonPressed);
 	}
 	mainInterface.shutdown();
 }

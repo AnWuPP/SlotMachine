@@ -14,6 +14,10 @@ void Timer::start(int inTime)
 	running = true;
 }
 
+bool Timer::isRunning() const {
+	return running;
+}
+
 void Timer::stop()
 {
 	if (!running)
@@ -26,7 +30,7 @@ bool Timer::timeIsUp() const
 	if (!running)
 		return false;
 	auto diff = difference();
-	return diff >= time;
+	return diff.count() >= time.count();
 }
 
 float Timer::complite() const
@@ -34,7 +38,7 @@ float Timer::complite() const
 	if (!running)
 		return 0.f;
 	auto rr = difference();
-	auto res = 1.f - static_cast<float>(rr.count()) / static_cast<float>(time.count());
+	auto res = static_cast<float>(rr.count()) / static_cast<float>(time.count());
 	return res;
 }
 
